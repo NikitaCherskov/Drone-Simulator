@@ -14,17 +14,21 @@
 friction = 0.86
 bounce = 0.35
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yskog"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxa5p"]
 albedo_texture = ExtResource("2_ct8qa")
 roughness_texture = ExtResource("5_6136a")
 normal_enabled = true
 normal_texture = ExtResource("4_kf0kk")
 ao_enabled = true
+ao_light_affect = 0.25
 ao_texture = ExtResource("3_voneb")
-uv1_scale = Vector3(500, 300, 500)
+uv1_scale = Vector3(0.085, 0.085, 0.085)
+uv1_triplanar = true
+texture_filter = 5
 
 [sub_resource type="BoxMesh" id="BoxMesh_i20rq"]
-material = SubResource("StandardMaterial3D_yskog")
+lightmap_size_hint = Vector2i(10004, 6006)
+material = SubResource("StandardMaterial3D_mxa5p")
 size = Vector3(1000, 100, 1000)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a4f3g"]
