@@ -75,13 +75,9 @@ directional_shadow_pancake_size = 1.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rr216")
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-size = Vector3(1000, 1000, 1000)
-origin_offset = Vector3(0, 200, 0)
-
 [node name="FalseDrone" parent="." instance=ExtResource("3_lafkc")]
 transform = Transform3D(1, 0, 0, 0, 0.997428, 0.0716715, 0, -0.0716715, 0.997428, 7.28354, 0.605456, 0.434136)
 
-[node name="ReflectionProbe2" type="ReflectionProbe" parent="."]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.7206, 0)
 size = Vector3(1000, 1000, 1000)
