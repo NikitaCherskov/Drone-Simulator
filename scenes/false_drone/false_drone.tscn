@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjbvfnjg02ce0"]
+
+[ext_resource type="Script" path="res://scenes/false_drone/false_drone.gd" id="1_ox3tm"]
+[ext_resource type="ArrayMesh" uid="uid://dx0hfq1f4p2kl" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_drone.res" id="1_xqj7i"]
+[ext_resource type="ArrayMesh" uid="uid://dcye65voocrqu" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_engine.res" id="2_s8t1a"]
+[ext_resource type="ArrayMesh" uid="uid://dh174anc3qxs" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_fast_propeller.res" id="3_0ru7x"]
+
+[node name="FalseDrone" type="Node3D"]
+script = ExtResource("1_ox3tm")
+
+[node name="SimpleDroneSimpleDrone" type="MeshInstance3D" parent="."]
+gi_mode = 2
+mesh = ExtResource("1_xqj7i")
+
+[node name="SimpleDroneSimpleEngine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.160798, 0.0217002, 0.127026)
+gi_mode = 2
+mesh = ExtResource("2_s8t1a")
+
+[node name="SimpleDroneSimpleFastPropeller" type="MeshInstance3D" parent="SimpleDroneSimpleEngine"]
+gi_mode = 2
+mesh = ExtResource("3_0ru7x")
+skeleton = NodePath("../..")
+
+[node name="SimpleDroneSimpleEngine2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161, 0.022, 0.127)
+gi_mode = 2
+mesh = ExtResource("2_s8t1a")
+
+[node name="SimpleDroneSimpleFastPropeller" type="MeshInstance3D" parent="SimpleDroneSimpleEngine2"]
+gi_mode = 2
+mesh = ExtResource("3_0ru7x")
+skeleton = NodePath("../..")
+
+[node name="SimpleDroneSimpleEngine3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161, 0.022, -0.127)
+gi_mode = 2
+mesh = ExtResource("2_s8t1a")
+
+[node name="SimpleDroneSimpleFastPropeller" type="MeshInstance3D" parent="SimpleDroneSimpleEngine3"]
+gi_mode = 2
+mesh = ExtResource("3_0ru7x")
+skeleton = NodePath("../..")
+
+[node name="SimpleDroneSimpleEngine4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161, 0.022, -0.127)
+gi_mode = 2
+mesh = ExtResource("2_s8t1a")
+
+[node name="SimpleDroneSimpleFastPropeller" type="MeshInstance3D" parent="SimpleDroneSimpleEngine4"]
+gi_mode = 2
+mesh = ExtResource("3_0ru7x")
+skeleton = NodePath("../..")

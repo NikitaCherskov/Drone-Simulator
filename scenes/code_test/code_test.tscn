@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp1fi4vqfsy1o"]
+
+[ext_resource type="Script" path="res://scenes/code_test/code_test.gd" id="1_tuagl"]
+[ext_resource type="Curve" uid="uid://8tmeaarxkgo0" path="res://scenes/drone/lift_curve.tres" id="2_6tsjj"]
+[ext_resource type="Curve" uid="uid://3rnpfg18nw1s" path="res://scenes/drone/resist_curve.tres" id="3_cv3b5"]
+
+[node name="CodeTest" type="Node2D"]
+script = ExtResource("1_tuagl")
+lift_coefficient = ExtResource("2_6tsjj")
+resist_coefficient = ExtResource("3_cv3b5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Line2D3" type="Line2D" parent="."]
+points = PackedVector2Array(-50, 0, 50, 0)
+default_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 190.97, -0.93)
+width = 4.0
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 80.505, 0)
+width = 4.0
+default_color = Color(0.431373, 0.25098, 0.25098, 1)
+
+[node name="Line2D4" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
+default_color = Color(0.129412, 0.160784, 0.278431, 1)

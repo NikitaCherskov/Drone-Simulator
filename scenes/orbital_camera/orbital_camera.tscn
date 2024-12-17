@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmswg0itci263"]
+
+[ext_resource type="Script" path="res://scenes/orbital_camera/orbital_camera.gd" id="1_8fiek"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_5r452"]
+
+[node name="OrbitalCamera" type="Node3D"]
+script = ExtResource("1_8fiek")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+shape = SubResource("SeparationRayShape3D_5r452")
+margin = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]

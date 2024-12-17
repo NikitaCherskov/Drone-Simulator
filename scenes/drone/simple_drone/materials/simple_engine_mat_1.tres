@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://drjgekyctbgvw"]
+
+[resource]
+resource_name = "simple_engine_mat_1"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.409709, 0.0521758, 1)
+metallic = 1.0
+roughness = 0.5

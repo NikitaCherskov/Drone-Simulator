@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7vgkar5pt7me"]
+
+[ext_resource type="PackedScene" uid="uid://bxgm2qgrla2x2" path="res://scenes/drone/drone.tscn" id="1_jqudf"]
+[ext_resource type="Script" path="res://scenes/test_map/test_map.gd" id="1_rwhym"]
+[ext_resource type="Texture2D" uid="uid://foyecy83k3tp" path="res://scenes/test_map/grid.jpg" id="1_sffjn"]
+[ext_resource type="PackedScene" uid="uid://cjbvfnjg02ce0" path="res://scenes/false_drone/false_drone.tscn" id="3_lafkc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7a43x"]
+friction = 0.86
+bounce = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yskog"]
+albedo_color = Color(0.0901961, 0.12549, 0.188235, 1)
+albedo_texture = ExtResource("1_sffjn")
+roughness = 0.8
+uv1_scale = Vector3(500, 300, 500)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i20rq"]
+material = SubResource("StandardMaterial3D_yskog")
+size = Vector3(1000, 100, 1000)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a4f3g"]
+points = PackedVector3Array(-500, -50, -500, -500, 50, -500, 500, -50, -500, -500, -50, 500, -500, 50, 500, 500, 50, -500, 500, -50, 500, 500, 50, 500)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ikcp"]
+
+[sub_resource type="Sky" id="Sky_bdqpj"]
+sky_material = SubResource("ProceduralSkyMaterial_0ikcp")
+
+[sub_resource type="Environment" id="Environment_rr216"]
+background_mode = 2
+sky = SubResource("Sky_bdqpj")
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssr_max_steps = 128
+ssao_enabled = true
+ssao_radius = 0.5
+ssao_light_affect = 0.47
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.0075
+fog_sky_affect = 0.455
+
+[node name="TestMap" type="Node3D"]
+script = ExtResource("1_rwhym")
+
+[node name="Terrain" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_7a43x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+mesh = SubResource("BoxMesh_i20rq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+shape = SubResource("ConvexPolygonShape3D_a4f3g")
+
+[node name="Drone" parent="." instance=ExtResource("1_jqudf")]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, 0.091568, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.562026, 0.82712, 0, -0.82712, -0.562026, 0, 1.38727, -1.02946)
+light_color = Color(1, 0.933333, 0.858824, 1)
+light_energy = 6.0
+shadow_enabled = true
+directional_shadow_split_1 = 0.05
+directional_shadow_split_2 = 0.1
+directional_shadow_split_3 = 0.3
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 80.0
+directional_shadow_pancake_size = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rr216")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+size = Vector3(1000, 1000, 1000)
+origin_offset = Vector3(0, 200, 0)
+
+[node name="FalseDrone" parent="." instance=ExtResource("3_lafkc")]
+transform = Transform3D(1, 0, 0, 0, 0.997428, 0.0716715, 0, -0.0716715, 0.997428, 7.28354, 0.605456, 0.434136)
+
+[node name="ReflectionProbe2" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.7206, 0)
+size = Vector3(1000, 1000, 1000)
