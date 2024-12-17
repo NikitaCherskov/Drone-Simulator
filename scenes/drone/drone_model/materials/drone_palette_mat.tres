@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://iqmegcsk01fo"]
+
+[ext_resource type="Texture2D" uid="uid://oc161dybm6xu" path="res://scenes/drone/drone_model/drone_palette_color.png" id="1_vf7rp"]
+[ext_resource type="Texture2D" uid="uid://dpawb3d1vn7kf" path="res://scenes/drone/drone_model/drone_palette_roughness.png" id="2_riqwa"]
+
+[resource]
+resource_name = "Материал"
+cull_mode = 2
+albedo_texture = ExtResource("1_vf7rp")
+metallic = 1.0
+metallic_texture = ExtResource("2_riqwa")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_riqwa")
+roughness_texture_channel = 1

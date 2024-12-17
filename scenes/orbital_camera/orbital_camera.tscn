@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmswg0itci263"]
+[gd_scene load_steps=5 format=3 uid="uid://bmswg0itci263"]
 
 [ext_resource type="Script" path="res://scenes/orbital_camera/orbital_camera.gd" id="1_8fiek"]
+[ext_resource type="Environment" uid="uid://mcvry3rp04s1" path="res://scenes/test_map/env1.tres" id="2_1oufe"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dobdvmrq7ll4f" path="res://scenes/test_map/cam_atr1.tres" id="3_jf8ar"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_5r452"]
 
@@ -9,6 +11,9 @@ script = ExtResource("1_8fiek")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 shape = SubResource("SeparationRayShape3D_5r452")
+spring_length = 0.0
 margin = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+environment = ExtResource("2_1oufe")
+attributes = ExtResource("3_jf8ar")

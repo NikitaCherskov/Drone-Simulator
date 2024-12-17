@@ -1,18 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7vgkar5pt7me"]
+[gd_scene load_steps=14 format=3 uid="uid://c7vgkar5pt7me"]
 
 [ext_resource type="PackedScene" uid="uid://bxgm2qgrla2x2" path="res://scenes/drone/drone.tscn" id="1_jqudf"]
 [ext_resource type="Script" path="res://scenes/test_map/test_map.gd" id="1_rwhym"]
-[ext_resource type="Texture2D" uid="uid://foyecy83k3tp" path="res://scenes/test_map/grid.jpg" id="1_sffjn"]
+[ext_resource type="Texture2D" uid="uid://cfasmtnlm7al8" path="res://scenes/test_map/Concrete008_2K-JPG_Color.jpg" id="2_ct8qa"]
 [ext_resource type="PackedScene" uid="uid://cjbvfnjg02ce0" path="res://scenes/false_drone/false_drone.tscn" id="3_lafkc"]
+[ext_resource type="Texture2D" uid="uid://i3k0kpst0uvl" path="res://scenes/test_map/Concrete008_2K-JPG_AmbientOcclusion.jpg" id="3_voneb"]
+[ext_resource type="Texture2D" uid="uid://dj5jcjujo38pg" path="res://scenes/test_map/Concrete008_2K-JPG_NormalGL.jpg" id="4_kf0kk"]
+[ext_resource type="Texture2D" uid="uid://dd20je152n2fq" path="res://scenes/test_map/Concrete008_2K-JPG_Roughness.jpg" id="5_6136a"]
+[ext_resource type="Environment" uid="uid://mcvry3rp04s1" path="res://scenes/test_map/env1.tres" id="7_f20mo"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dobdvmrq7ll4f" path="res://scenes/test_map/cam_atr1.tres" id="8_r4534"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7a43x"]
 friction = 0.86
 bounce = 0.35
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yskog"]
-albedo_color = Color(0.0901961, 0.12549, 0.188235, 1)
-albedo_texture = ExtResource("1_sffjn")
-roughness = 0.8
+albedo_texture = ExtResource("2_ct8qa")
+roughness_texture = ExtResource("5_6136a")
+normal_enabled = true
+normal_texture = ExtResource("4_kf0kk")
+ao_enabled = true
+ao_texture = ExtResource("3_voneb")
 uv1_scale = Vector3(500, 300, 500)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i20rq"]
@@ -21,26 +29,6 @@ size = Vector3(1000, 100, 1000)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a4f3g"]
 points = PackedVector3Array(-500, -50, -500, -500, 50, -500, 500, -50, -500, -500, -50, 500, -500, 50, 500, 500, 50, -500, 500, -50, 500, 500, 50, 500)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ikcp"]
-
-[sub_resource type="Sky" id="Sky_bdqpj"]
-sky_material = SubResource("ProceduralSkyMaterial_0ikcp")
-
-[sub_resource type="Environment" id="Environment_rr216"]
-background_mode = 2
-sky = SubResource("Sky_bdqpj")
-reflected_light_source = 2
-tonemap_mode = 2
-ssr_enabled = true
-ssr_max_steps = 128
-ssao_enabled = true
-ssao_radius = 0.5
-ssao_light_affect = 0.47
-glow_enabled = true
-fog_enabled = true
-fog_density = 0.0075
-fog_sky_affect = 0.455
 
 [node name="TestMap" type="Node3D"]
 script = ExtResource("1_rwhym")
@@ -61,9 +49,11 @@ shape = SubResource("ConvexPolygonShape3D_a4f3g")
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, 0.091568, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.562026, 0.82712, 0, -0.82712, -0.562026, 0, 1.38727, -1.02946)
-light_color = Color(1, 0.933333, 0.858824, 1)
-light_energy = 6.0
+transform = Transform3D(1, 0, 0, 0, 0.606155, 0.795347, 0, -0.795347, 0.606155, 0, 1.38727, -1.02946)
+light_color = Color(1, 0.886275, 0.721569, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+light_volumetric_fog_energy = 2.0
 shadow_enabled = true
 directional_shadow_split_1 = 0.05
 directional_shadow_split_2 = 0.1
@@ -73,10 +63,11 @@ directional_shadow_max_distance = 80.0
 directional_shadow_pancake_size = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rr216")
+environment = ExtResource("7_f20mo")
+camera_attributes = ExtResource("8_r4534")
 
 [node name="FalseDrone" parent="." instance=ExtResource("3_lafkc")]
-transform = Transform3D(1, 0, 0, 0, 0.997428, 0.0716715, 0, -0.0716715, 0.997428, 7.28354, 0.605456, 0.434136)
+transform = Transform3D(0.631123, 0.0231198, -0.775338, 0, 0.999555, 0.0298058, 0.775683, -0.0188111, 0.630842, 2.52332, 0.538799, 2.03368)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.7206, 0)

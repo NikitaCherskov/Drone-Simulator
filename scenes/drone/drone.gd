@@ -3,8 +3,8 @@ extends RigidBody3D
 @export var engines : Array[DroneEngine]
 
 const THROTTLE_POWER = 1.0
-const PITCH_POWER = 0.1
-const ROLL_POWER = 0.1
+const PITCH_POWER = 0.05
+const ROLL_POWER = 0.05
 const YAW_POWER = 0.02
 
 var target_powers = [0.0, 0.0, 0.0, 0.0]

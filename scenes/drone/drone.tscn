@@ -1,37 +1,38 @@
 [gd_scene load_steps=6 format=3 uid="uid://bxgm2qgrla2x2"]
 
-[ext_resource type="ArrayMesh" uid="uid://dx0hfq1f4p2kl" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_drone.res" id="1_ijxsl"]
 [ext_resource type="Script" path="res://scenes/drone/drone.gd" id="1_s3xpl"]
 [ext_resource type="PackedScene" uid="uid://b85auvmgtqif7" path="res://scenes/drone/drone_engine.tscn" id="3_5463n"]
 [ext_resource type="PackedScene" uid="uid://bmswg0itci263" path="res://scenes/orbital_camera/orbital_camera.tscn" id="4_esoni"]
+[ext_resource type="ArrayMesh" uid="uid://cq1p3p0ryddth" path="res://scenes/drone/drone_model/meshes/drone_2_drone2.res" id="4_joamd"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y16pe"]
-points = PackedVector3Array(-0.160877, -0.00112355, -0.147624, -0.0525398, -0.0357357, -0.103521, -0.175003, -0.00112355, -0.141786, -0.160877, 0.0388787, -0.147624, 0.160841, -0.00112355, -0.147624, -0.0525398, -0.0357357, 0.103493, -0.180845, -0.00112355, -0.127653, 0.052469, -0.0357357, -0.103521, -0.175003, 0.0388787, -0.141786, 0.160841, 0.0388787, -0.147624, 0.174967, -0.00112355, -0.141786, -0.160877, -0.00112355, 0.147595, -0.175003, -0.00112355, 0.141757, -0.180845, -0.00112355, 0.127596, 0.052469, -0.0357357, 0.103493, -0.180845, 0.0388787, -0.127653, 0.180845, -0.00112355, -0.127653, 0.174967, 0.0388787, -0.141786, -0.160877, 0.0388787, 0.147595, 0.160841, -0.00112355, 0.147595, -0.175003, 0.0388787, 0.141757, -0.180845, 0.0388787, 0.127596, 0.180845, -0.00112355, 0.127596, 0.174967, -0.00112355, 0.141757, 0.180845, 0.0388787, -0.127653, 0.160841, 0.0388787, 0.147595, 0.180845, 0.0388787, 0.127596, 0.174967, 0.0388787, 0.141757)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_80rt6"]
+points = PackedVector3Array(-0.0890801, -0.00400586, -0.0992844, -0.0239966, -0.0107502, -0.0423144, -0.0996542, -0.00400586, -0.0886912, -0.0890801, -1.05705e-06, -0.0992844, 0.0890606, -0.00400586, -0.0992844, -0.0239966, -0.0107502, 0.042295, 0.0239771, -0.0107502, -0.0423144, -0.0996542, -1.05705e-06, -0.0886912, -0.0996542, -0.00400586, 0.0886524, -0.0223188, 0.0503047, -0.0476596, -0.0200167, 0.0508268, -0.0481844, -0.00948159, 0.0376392, -0.06284, 0.0890606, -1.05705e-06, -0.0992844, 0.0996347, -0.00400586, -0.0886912, -0.0740968, -0.00400586, 0.0992844, -0.0890801, -0.00400586, 0.099265, 0.0239771, -0.0107502, 0.042295, -0.0996542, -1.05705e-06, 0.0886524, -0.0228455, 0.0508268, -0.0453661, -0.0200167, 0.0519939, -0.0453661, 0.0199972, 0.0508268, -0.0481844, 0.00946208, 0.0376392, -0.06284, 0.0222993, 0.0503047, -0.0476596, 0.0996347, -1.05705e-06, -0.0886912, 0.0996347, -0.00400586, 0.0886524, -0.0740968, -1.05705e-06, 0.0992844, 0.0740578, -0.00400586, 0.0992844, -0.0890801, -1.05705e-06, 0.099265, 0.0890606, -0.00400586, 0.099265, -0.0203288, 0.0483085, 0.0509445, -0.0208361, 0.0488244, 0.0486509, -0.0228455, 0.0508268, -0.0273479, -0.0200167, 0.0519939, -0.0273479, 0.0199972, 0.0519939, -0.0453661, 0.022826, 0.0508268, -0.0453661, 0.0996347, -1.05705e-06, 0.0886524, -0.0160172, 0.0221912, 0.0791865, 0.0740578, -1.05705e-06, 0.0992844, -0.0180072, 0.0488244, 0.0514693, 0.0890606, -1.05705e-06, 0.099265, -0.0180072, 0.0499976, 0.0486509, 0.0199972, 0.0519939, -0.0273479, 0.022826, 0.0508268, -0.0273479, 0.0208166, 0.0488244, 0.0486509, 0.0202898, 0.0483085, 0.0509445, 0.0159977, 0.0221912, 0.0791865, 0.0179877, 0.0488244, 0.0514693, 0.0179877, 0.0499976, 0.0486509)
 
 [node name="Drone" type="RigidBody3D" node_paths=PackedStringArray("engines")]
 script = ExtResource("1_s3xpl")
 engines = [NodePath("DroneEngine1"), NodePath("DroneEngine2"), NodePath("DroneEngine3"), NodePath("DroneEngine4")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_y16pe")
-
-[node name="SimpleDroneSimpleDrone" type="MeshInstance3D" parent="."]
-gi_mode = 2
-mesh = ExtResource("1_ijxsl")
-
 [node name="DroneEngine1" parent="." instance=ExtResource("3_5463n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160778, 0.021958, -0.126648)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0830771, -0.000957625, -0.0802414)
 
 [node name="DroneEngine2" parent="." instance=ExtResource("3_5463n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161, 0.022, -0.127)
-clockwise = true
-
-[node name="DroneEngine3" parent="." instance=ExtResource("3_5463n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.161, 0.022, 0.127)
-
-[node name="DroneEngine4" parent="." instance=ExtResource("3_5463n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.161, 0.022, 0.127)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.083, -0.001, -0.08)
 clockwise = true
 
 [node name="OrbitalCamera" parent="." instance=ExtResource("4_esoni")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.233231, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0318941, -0.100675)
+
+[node name="Drone2Drone2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("4_joamd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_80rt6")
+
+[node name="DroneEngine3" parent="." instance=ExtResource("3_5463n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.083, -0.001, 0.08)
+
+[node name="DroneEngine4" parent="." instance=ExtResource("3_5463n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083, -0.001, 0.08)
+clockwise = true

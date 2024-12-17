@@ -1,0 +1,25 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://mcvry3rp04s1"]
+
+[ext_resource type="Texture2D" uid="uid://c1k21f62wrkc7" path="res://scenes/test_map/DaySkyHDRI047B_4K-HDR.exr" id="1_r6pp6"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bojp3"]
+panorama = ExtResource("1_r6pp6")
+
+[sub_resource type="Sky" id="Sky_bdqpj"]
+sky_material = SubResource("PanoramaSkyMaterial_bojp3")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_bdqpj")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssr_max_steps = 128
+ssao_enabled = true
+ssao_radius = 0.5
+ssao_light_affect = 0.47
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.0075
+fog_sky_affect = 0.455

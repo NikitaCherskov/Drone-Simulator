@@ -1,8 +1,8 @@
 extends Node3D
 class_name DroneEngine
 
-@onready var slow_propeller : MeshInstance3D = $SimpleDroneSimpleSlowPropeller
-@onready var fast_propeller : MeshInstance3D = $SimpleDroneSimpleFastPropeller
+@onready var slow_propeller : MeshInstance3D = $Drone2PropellerSlow
+@onready var fast_propeller : MeshInstance3D = $Drone2Propeller2Fast
 
 @export var clockwise : bool = false
 @export var power : float = 3

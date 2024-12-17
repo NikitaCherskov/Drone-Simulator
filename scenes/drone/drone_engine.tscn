@@ -2,25 +2,22 @@
 
 [ext_resource type="Script" path="res://scenes/drone/drone_engine.gd" id="1_7kua1"]
 [ext_resource type="Curve" uid="uid://8tmeaarxkgo0" path="res://scenes/drone/lift_curve.tres" id="2_4uonx"]
-[ext_resource type="ArrayMesh" uid="uid://dcye65voocrqu" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_engine.res" id="2_nlwkw"]
 [ext_resource type="Curve" uid="uid://3rnpfg18nw1s" path="res://scenes/drone/resist_curve.tres" id="3_c5rnr"]
-[ext_resource type="ArrayMesh" uid="uid://b2px8u4wbcy7d" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_slow_propeller.res" id="3_m0h4n"]
-[ext_resource type="ArrayMesh" uid="uid://dh174anc3qxs" path="res://scenes/drone/simple_drone/meshes/simple_drone_simple_fast_propeller.res" id="4_bx1vh"]
+[ext_resource type="ArrayMesh" uid="uid://dp383wgrh2lms" path="res://scenes/drone/drone_model/meshes/drone_2_propeller2_fast.res" id="4_ovoq6"]
+[ext_resource type="ArrayMesh" uid="uid://cg2y7u2xao0fj" path="res://scenes/drone/drone_model/meshes/drone_2_engine.res" id="5_p07c0"]
+[ext_resource type="ArrayMesh" uid="uid://4h832ktaa5om" path="res://scenes/drone/drone_model/meshes/drone_2_propeller_slow.res" id="6_vwec1"]
 
 [node name="DroneEngine" type="Node3D"]
 script = ExtResource("1_7kua1")
 lift_coefficient = ExtResource("2_4uonx")
 resist_coefficient = ExtResource("3_c5rnr")
 
-[node name="SimpleDroneSimpleEngine" type="MeshInstance3D" parent="."]
-gi_mode = 2
-mesh = ExtResource("2_nlwkw")
-
-[node name="SimpleDroneSimpleSlowPropeller" type="MeshInstance3D" parent="."]
-gi_mode = 2
-mesh = ExtResource("3_m0h4n")
-
-[node name="SimpleDroneSimpleFastPropeller" type="MeshInstance3D" parent="."]
+[node name="Drone2Propeller2Fast" type="MeshInstance3D" parent="."]
 visible = false
-gi_mode = 2
-mesh = ExtResource("4_bx1vh")
+mesh = ExtResource("4_ovoq6")
+
+[node name="Drone2PropellerSlow" type="MeshInstance3D" parent="."]
+mesh = ExtResource("6_vwec1")
+
+[node name="Drone2Engine" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_p07c0")
