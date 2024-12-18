@@ -102,14 +102,14 @@ func axis_speed_process():
 
 
 func stabilize():
-	var roll_diff = mod_clamp(roll, 0.3) + roll_speed * 0.1
-	var pitch_diff = mod_clamp(pitch, 0.3) - pitch_speed * 0.1
-	var yaw_diff = mod_clamp(yaw, 0.3) + yaw_speed * 0.1
-	roll = mod_clamp(roll_diff, 3.0)
-	pitch = mod_clamp(pitch_diff, 3.0)
-	yaw = mod_clamp(yaw_diff, 6.0)
+	var roll_diff = roll + roll_speed * 0.1
+	var pitch_diff = pitch - pitch_speed * 0.1
+	var yaw_diff = yaw + yaw_speed * 0.1
+	roll = mod_clamp(roll_diff, 2.0)
+	pitch = mod_clamp(pitch_diff, 2.0)
+	yaw = mod_clamp(yaw_diff, 4.0)
 	throttle = (throttle + 1.0) / 2.0
-	throttle = pow(throttle, 1.0 / 1.3)
+	throttle = pow(throttle, 1.0 / 1.2)
 
 
 func _input(event):
@@ -121,6 +121,6 @@ func _input(event):
 func mod_clamp(val : float, power : float):
 	clamp(val, -1.0, 1.0)
 	if val >= 0:
-		return 1.0 - pow(1.0 - val, power)
+		return 1.0 - pow(abs(1.0 - val), power)
 	else:
-		return pow(val + 1.0, power) - 1.0
+		return pow(abs(val + 1.0), power) - 1.0
