@@ -8,10 +8,14 @@ const ROLL_POWER = 0.05
 const YAW_POWER = 0.02
 
 var target_powers = [0.0, 0.0, 0.0, 0.0]
-var throttle = 0.0
-var roll = 0.0
-var pitch = 0.0
-var yaw = 0.0
+var throttle : float = 0.0
+var roll : float = 0.0
+var pitch : float = 0.0
+var yaw : float = 0.0
+
+var roll_speed = 0.0
+var pitch_speed = 0.0
+var yaw_speed = 0.0
 
 var mouse_pitch = 0.0
 var mouse_roll = 0.0
@@ -26,6 +30,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	axis_control()
+	axis_speed_process()
+	stabilize()
 	axis_to_target_powers()
 	target_to_engine_powers()
 
@@ -41,8 +47,8 @@ func target_to_engine_powers():
 
 func axis_to_target_powers():
 	var tmp_throttle = throttle * THROTTLE_POWER
-	var tmp_roll = (roll + mouse_roll) * ROLL_POWER
-	var tmp_pitch =  (pitch + mouse_pitch) * PITCH_POWER
+	var tmp_roll = roll * ROLL_POWER
+	var tmp_pitch =  pitch * PITCH_POWER
 	var tmp_yaw = yaw * YAW_POWER
 	var negative_throttle = clampf(-tmp_throttle, 0.0, 1.0)
 	var negative_roll = clampf(-tmp_roll, 0.0, 1.0)
@@ -84,10 +90,37 @@ func axis_control():
 	roll = Input.get_axis("roll_left", "roll_right")
 	pitch = Input.get_axis("pitch_down", "pitch_up")
 	yaw = Input.get_axis("yaw_left", "yaw_right")
+	roll = clamp(roll + mouse_roll, -1.0, 1.0)
+	pitch = clamp(pitch + mouse_pitch, -1.0, 1.0)
 
+
+func axis_speed_process():
+	var rotate_vector = to_local(angular_velocity + position)
+	roll_speed = rotate_vector.z
+	pitch_speed = rotate_vector.x
+	yaw_speed = rotate_vector.y
+
+
+func stabilize():
+	var roll_diff = mod_clamp(roll, 0.3) + roll_speed * 0.1
+	var pitch_diff = mod_clamp(pitch, 0.3) - pitch_speed * 0.1
+	var yaw_diff = mod_clamp(yaw, 0.3) + yaw_speed * 0.1
+	roll = mod_clamp(roll_diff, 3.0)
+	pitch = mod_clamp(pitch_diff, 3.0)
+	yaw = mod_clamp(yaw_diff, 6.0)
+	throttle = (throttle + 1.0) / 2.0
+	throttle = pow(throttle, 1.0 / 1.3)
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_pitch = -event.relative.y / 100.0
 		mouse_roll = event.relative.x / 100.0
+
+
+func mod_clamp(val : float, power : float):
+	clamp(val, -1.0, 1.0)
+	if val >= 0:
+		return 1.0 - pow(1.0 - val, power)
+	else:
+		return pow(val + 1.0, power) - 1.0

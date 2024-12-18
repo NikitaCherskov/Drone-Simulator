@@ -11,12 +11,12 @@ class_name DroneEngine
 @export var resist_coefficient : Curve
 
 const propeller_attack_angle = 0.26
-const propeller_radius = 0.075
+const propeller_radius = 0.04
 const propeller_half_radius = propeller_radius
-const propeller_square = 0.0015
+const propeller_square = 0.001
 const propeller_mass = 0.02
 const propeller_inertia_moment = propeller_mass * propeller_radius * propeller_radius
-const engine_max_moment = 0.02
+const engine_max_moment = 0.006
 const max_slip = 0.05
 
 var move_speed = 0.0
