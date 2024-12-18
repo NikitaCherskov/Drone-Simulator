@@ -71,7 +71,7 @@ environment = ExtResource("7_f20mo")
 camera_attributes = ExtResource("8_r4534")
 
 [node name="FalseDrone" parent="." instance=ExtResource("3_lafkc")]
-transform = Transform3D(0.631123, 0.0231198, -0.775338, 0, 0.999555, 0.0298058, 0.775683, -0.0188111, 0.630842, 2.52332, 0.538799, 2.03368)
+transform = Transform3D(0.631123, 0.0231198, -0.775338, 0, 0.999555, 0.0298058, 0.775683, -0.0188111, 0.630842, 7.92175, 3.09653, 3.92595)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.7206, 0)
