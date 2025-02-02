@@ -49,8 +49,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 shape = SubResource("ConvexPolygonShape3D_a4f3g")
 
-[node name="Drone" parent="." instance=ExtResource("1_jqudf")]
+[node name="Drone" parent="." node_paths=PackedStringArray("target_object") instance=ExtResource("1_jqudf")]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, 0.091568, 0)
+target_object = NodePath("../FalseDrone")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.606155, 0.795347, 0, -0.795347, 0.606155, 0, 1.38727, -1.02946)

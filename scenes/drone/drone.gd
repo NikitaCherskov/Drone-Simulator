@@ -1,6 +1,9 @@
 extends RigidBody3D
 
 @export var engines : Array[DroneEngine]
+@export var target_object : Node3D = null
+
+@onready var camera : Node3D = $OrbitalCamera
 
 const THROTTLE_POWER = 1.0
 const PITCH_POWER = 0.05
@@ -22,6 +25,12 @@ var mouse_roll = 0.0
 
 
 
+func _ready():
+	if camera.has_method("set_target_object"):
+		camera.set_target_object(target_object)
+
+
+
 func _process(delta):
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
@@ -29,6 +38,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	mouse_lerp(5.0 * delta)
 	axis_control()
 	axis_speed_process()
 	stabilize()
@@ -50,7 +60,6 @@ func axis_to_target_powers():
 	var tmp_roll = roll * ROLL_POWER
 	var tmp_pitch =  pitch * PITCH_POWER
 	var tmp_yaw = yaw * YAW_POWER
-	var negative_throttle = clampf(-tmp_throttle, 0.0, 1.0)
 	var negative_roll = clampf(-tmp_roll, 0.0, 1.0)
 	var negative_pitch = clampf(-tmp_pitch, 0.0, 1.0)
 	var negative_yaw = clampf(-tmp_yaw, 0.0, 1.0)
@@ -66,13 +75,13 @@ func axis_to_target_powers():
 	target_powers[1] = tmp_throttle + tmp_roll + tmp_pitch + tmp_yaw
 	target_powers[2] = tmp_throttle + tmp_roll + negative_pitch + negative_yaw
 	target_powers[3] = tmp_throttle + negative_roll + negative_pitch + tmp_yaw
-	var max = 0.0
+	var max_target_power = 0.0
 	for target_power in target_powers:
-		if target_power > max:
-			max = target_power
-	if max > 0.0001:
+		if target_power > max_target_power:
+			max_target_power = target_power
+	if max_target_power > 0.0001:
 		for i in range(0, target_powers.size()):
-			target_powers[i] /= max
+			target_powers[i] /= max_target_power
 	var axis_sum = abs_throttle + abs_roll + abs_pitch + abs_yaw
 	axis_sum = clampf(axis_sum, 0.0, 1.0)
 	for i in range(0, target_powers.size()):
@@ -94,6 +103,7 @@ func axis_control():
 	pitch = clamp(pitch + mouse_pitch, -1.0, 1.0)
 
 
+
 func axis_speed_process():
 	var rotate_vector = to_local(angular_velocity + position)
 	roll_speed = rotate_vector.z
@@ -101,15 +111,23 @@ func axis_speed_process():
 	yaw_speed = rotate_vector.y
 
 
+
 func stabilize():
 	var roll_diff = roll + roll_speed * 0.1
 	var pitch_diff = pitch - pitch_speed * 0.1
 	var yaw_diff = yaw + yaw_speed * 0.1
-	roll = mod_clamp(roll_diff, 2.0)
-	pitch = mod_clamp(pitch_diff, 2.0)
-	yaw = mod_clamp(yaw_diff, 4.0)
+	roll = mod_clamp(roll_diff, 4.0)
+	pitch = mod_clamp(pitch_diff, 4.0)
+	yaw = mod_clamp(yaw_diff, 8.0)
 	throttle = (throttle + 1.0) / 2.0
 	throttle = pow(throttle, 1.0 / 1.2)
+
+
+
+func mouse_lerp(arg):
+	mouse_roll = lerp(mouse_roll, 0.0, arg)
+	mouse_pitch = lerp(mouse_pitch, 0.0, arg)
+
 
 
 func _input(event):
@@ -118,9 +136,12 @@ func _input(event):
 		mouse_roll = event.relative.x / 100.0
 
 
+
 func mod_clamp(val : float, power : float):
 	clamp(val, -1.0, 1.0)
 	if val >= 0:
 		return 1.0 - pow(abs(1.0 - val), power)
 	else:
 		return pow(abs(val + 1.0), power) - 1.0
+
+

@@ -56,8 +56,6 @@ func testing_function():
 	var air_dencity = GlobalVariables.air_density
 	var Y_force = lift_coef * air_dencity * move_speed_pow2 * 0.5 * propeller_square
 	var X_force = resist_coef * air_dencity * move_speed_pow2 * 0.5 * propeller_square
-	#X_force = 100
-	#Y_force = 0
 	line_4.points[1].x = -X_force
 	line_4.points[1].y = Y_force
 	var to_rotate = Vector2(-X_force, Y_force)
