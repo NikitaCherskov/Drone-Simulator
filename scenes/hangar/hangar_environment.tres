@@ -1,0 +1,11 @@
+[gd_resource type="Environment" format=3 uid="uid://d07ywownyyt3h"]
+
+[resource]
+tonemap_mode = 2
+tonemap_exposure = 0.61
+ssr_depth_tolerance = 18.61
+ssao_enabled = true
+ssao_light_affect = 0.46
+ssao_ao_channel_affect = 1.0
+glow_enabled = true
+glow_bloom = 0.5

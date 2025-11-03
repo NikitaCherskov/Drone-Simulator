@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dcdl134g1wmvl"]
+
+[ext_resource type="Texture2D" uid="uid://d25fa5dol8qll" path="res://scenes/hangar/textures/hangar_wall_color.png" id="1_n7ss5"]
+[ext_resource type="Texture2D" uid="uid://donxaef7qsi0n" path="res://scenes/hangar/textures/hangar_wall_normal.png" id="2_4mb5j"]
+[ext_resource type="Texture2D" uid="uid://c5sbhv2kfkv1l" path="res://scenes/hangar/textures/hangar_wall_AO.png" id="2_bygx3"]
+[ext_resource type="Texture2D" uid="uid://0ifv2o5x76l1" path="res://scenes/hangar/textures/hangar_wall_roughness.png" id="3_k0gpm"]
+
+[resource]
+resource_name = "hangar_wall"
+albedo_texture = ExtResource("1_n7ss5")
+roughness_texture = ExtResource("3_k0gpm")
+normal_enabled = true
+normal_texture = ExtResource("2_4mb5j")
+ao_enabled = true
+ao_light_affect = 0.5
+ao_texture = ExtResource("2_bygx3")

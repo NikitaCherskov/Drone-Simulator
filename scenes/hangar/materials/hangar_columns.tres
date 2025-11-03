@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dbfftp7xc4i3x"]
+
+[ext_resource type="Texture2D" uid="uid://dyfkx2n2w32fo" path="res://scenes/hangar/textures/hangar_column_color.png" id="1_6kb1c"]
+[ext_resource type="Texture2D" uid="uid://cp8tg3fbghx7t" path="res://scenes/hangar/textures/hangar_column_metalness.png" id="2_s2x3x"]
+[ext_resource type="Texture2D" uid="uid://bhxrl5gnbu2qs" path="res://scenes/hangar/textures/hangar_column_normal.png" id="3_vhcfp"]
+[ext_resource type="Texture2D" uid="uid://b5cgpsg4b6p4x" path="res://scenes/hangar/textures/hangar_column_roughness.png" id="4_a5bdp"]
+
+[resource]
+resource_name = "hangar_columns"
+albedo_texture = ExtResource("1_6kb1c")
+metallic = 1.0
+metallic_texture = ExtResource("2_s2x3x")
+roughness_texture = ExtResource("4_a5bdp")
+normal_enabled = true
+normal_texture = ExtResource("3_vhcfp")

@@ -5,23 +5,23 @@ extends RigidBody3D
 
 @onready var camera : Node3D = $OrbitalCamera
 
-const THROTTLE_POWER = 1.0
-const PITCH_POWER = 0.05
-const ROLL_POWER = 0.05
-const YAW_POWER = 0.02
+const THROTTLE_POWER = 1.0 #чувстивтельность газа
+const PITCH_POWER = 0.05 #чувстивтельность тангажа
+const ROLL_POWER = 0.05 #чувстивтельность крена
+const YAW_POWER = 0.02 #чувстивтельность рыскания
 
-var target_powers = [0.0, 0.0, 0.0, 0.0]
-var throttle : float = 0.0
-var roll : float = 0.0
-var pitch : float = 0.0
-var yaw : float = 0.0
+var target_powers = [0.0, 0.0, 0.0, 0.0] #газ двигателей
+var throttle : float = 0.0 #газ
+var roll : float = 0.0 #крен
+var pitch : float = 0.0 #тангаж
+var yaw : float = 0.0 #рыскание
 
-var roll_speed = 0.0
-var pitch_speed = 0.0
-var yaw_speed = 0.0
+var roll_speed = 0.0 #угловой момент крена
+var pitch_speed = 0.0 #угловой момент тангажа
+var yaw_speed = 0.0 #угловой момент рыскания
 
-var mouse_pitch = 0.0
-var mouse_roll = 0.0
+var mouse_pitch = 0.0 #тангаж (мышь)
+var mouse_roll = 0.0 #крен (мышь)
 
 
 
@@ -132,8 +132,8 @@ func mouse_lerp(arg):
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_pitch = -event.relative.y / 100.0
-		mouse_roll = event.relative.x / 100.0
+		mouse_pitch = -event.relative.y * 0.005
+		mouse_roll = event.relative.x * 0.005
 
 
 

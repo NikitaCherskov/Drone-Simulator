@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://cx88saiku1jm2"]
+
+[ext_resource type="Texture2D" uid="uid://cfasmtnlm7al8" path="res://scenes/test_map/Concrete008_2K-JPG_Color.jpg" id="1_xnxau"]
+[ext_resource type="Texture2D" uid="uid://i3k0kpst0uvl" path="res://scenes/test_map/Concrete008_2K-JPG_AmbientOcclusion.jpg" id="2_erjs8"]
+[ext_resource type="Texture2D" uid="uid://dj5jcjujo38pg" path="res://scenes/test_map/Concrete008_2K-JPG_NormalGL.jpg" id="3_qnic6"]
+[ext_resource type="Texture2D" uid="uid://dd20je152n2fq" path="res://scenes/test_map/Concrete008_2K-JPG_Roughness.jpg" id="4_0v38t"]
+
+[resource]
+resource_name = "hangar_floor"
+albedo_texture = ExtResource("1_xnxau")
+roughness_texture = ExtResource("4_0v38t")
+normal_enabled = true
+normal_texture = ExtResource("3_qnic6")
+ao_enabled = true
+ao_light_affect = 0.5
+ao_texture = ExtResource("2_erjs8")

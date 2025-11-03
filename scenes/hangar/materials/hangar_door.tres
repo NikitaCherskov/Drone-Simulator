@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bpn16ldxpajb2"]
+
+[ext_resource type="Texture2D" uid="uid://beif85uhup1b5" path="res://scenes/hangar/textures/hangar_door_color.png" id="1_4oytp"]
+[ext_resource type="Texture2D" uid="uid://wmfmiuwgnns3" path="res://scenes/hangar/textures/hangar_door_metalness.png" id="2_3in1p"]
+[ext_resource type="Texture2D" uid="uid://qdpp2sh243um" path="res://scenes/hangar/textures/hangar_door_normal.png" id="3_t3mcf"]
+[ext_resource type="Texture2D" uid="uid://dcywe4h5nfqsv" path="res://scenes/hangar/textures/hangar_door_roughness.png" id="4_dr6os"]
+
+[resource]
+resource_name = "hangar_door"
+albedo_texture = ExtResource("1_4oytp")
+metallic = 1.0
+metallic_texture = ExtResource("2_3in1p")
+roughness_texture = ExtResource("4_dr6os")
+normal_enabled = true
+normal_texture = ExtResource("3_t3mcf")

@@ -6,12 +6,12 @@ extends Node3D
 @onready var arm : SpringArm3D = $SpringArm3D
 @onready var cam : Camera3D = $SpringArm3D/Camera3D
 
-var DRONE_SIZE = 0.2
-var SAVE_RECT_COORD : bool = false
-var SENS = 0.01
+var DRONE_SIZE = 0.2 #размер цели
+var SAVE_RECT_COORD : bool = false #сохранять ли данные о выделяющем прямоугольнике
+var SENS = 0.01 #чувствительность камеры
 
 var real_rotation : Vector3 = Vector3(0.0, 0.0, 0.0)
-var screenshot_num = 0
+var screenshot_num = 0 #номер фотографии экрана
 
 
 
@@ -96,7 +96,8 @@ func take_screenshot():
 		else:
 			print("txt_file is null")
 		txt_file = null
-		screenshot_num += 1
+	
+	screenshot_num += 1
 	
 	var num_file = FileAccess.open(num_inst_path, FileAccess.WRITE)
 	if num_file != null:

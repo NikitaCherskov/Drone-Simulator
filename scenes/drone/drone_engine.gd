@@ -4,29 +4,28 @@ class_name DroneEngine
 @onready var slow_propeller : MeshInstance3D = $Drone2PropellerSlow
 @onready var fast_propeller : MeshInstance3D = $Drone2Propeller2Fast
 
-@export var clockwise : bool = false
-@export var power : float = 3
-@export var torque_power : float = 2
-@export var lift_coefficient : Curve
-@export var resist_coefficient : Curve
+@export var clockwise : bool = false #вращается ли винт по часовой стрелке
+@export var torque_power : float = 2 #мощность электромотора
+@export var lift_coefficient : Curve #коэффициент подьемной силы
+@export var resist_coefficient : Curve #коэффициент сопротивления
 
-const propeller_attack_angle = 0.26
-const propeller_radius = 0.04
-const propeller_half_radius = propeller_radius
-const propeller_square = 0.001
-const propeller_mass = 0.02
+const propeller_attack_angle = 0.26 #угол атаки лопасти
+const propeller_radius = 0.04 #радиус винта
+const propeller_half_radius = propeller_radius / 2.0
+const propeller_square = 0.001 #площадь лопасти
+const propeller_mass = 0.02 #масса винта
 const propeller_inertia_moment = propeller_mass * propeller_radius * propeller_radius
-const engine_max_moment = 0.006
-const max_slip = 0.05
+const engine_max_moment = 0.006 #максимальный момент электродвигателя
+const max_slip = 0.05 #максимальное скольжение асинхронного двигателя
 
-var move_speed = 0.0
-var lift_force = 0.0
-var resist_force = 0.0
-var angle_speed = 0.0
-var torque_moment = 0.0
-var magnetic_angle_speed = 0.0
+var move_speed = 0.0 #скорость движения
+var lift_force = 0.0 #подьемная сила
+var resist_force = 0.0 #сила сопротивления
+var angle_speed = 0.0 #угловая скорость
+var torque_moment = 0.0 #момент двигателя
+var magnetic_angle_speed = 0.0 #угловой момент магнитного поля электродвигателя
 
-var throttle : float = 0.0
+var throttle : float = 0.0 #газ
 
 func set_throttle(_throttle : float):
 	throttle = clampf(_throttle, 0.0, 1.0)
@@ -61,12 +60,11 @@ func calculate_engine(delta):
 	magnetic_angle_speed = angle_speed / (1.0 - max_slip)
 	magnetic_angle_speed = clamp(magnetic_angle_speed, 10, 125663)
 	var slip = (magnetic_angle_speed - angle_speed) / magnetic_angle_speed
-	torque_moment = engine_max_moment * throttle
-	#if abs(slip) > 0.0001:
-	#	torque_moment = (2 * engine_max_moment) / (slip/max_slip + max_slip/slip)
-	#	torque_moment *= throttle
-	#else:
-	#	torque_moment = 0.0
+	if abs(slip) > 0.0001:
+		torque_moment = (2.0 * engine_max_moment) / (slip/max_slip + max_slip/slip)
+		torque_moment *= throttle
+	else:
+		torque_moment = 0.0
 
 func calculate_forces():
 	var current_attack_angle = propeller_attack_angle
@@ -109,6 +107,6 @@ func calculate_forces():
 	#print(current_attack_angle)
 
 func calculate_move_speed():
-	var torque_force = torque_moment / propeller_half_radius
+	var torque_force = torque_moment / propeller_radius
 	move_speed += (resist_force + torque_force) / propeller_mass
-	angle_speed = move_speed / propeller_half_radius
+	angle_speed = move_speed / propeller_radius

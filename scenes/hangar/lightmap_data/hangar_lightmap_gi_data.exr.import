@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://cypaubgrwc0oo"
+path="res://.godot/imported/hangar_lightmap_gi_data.exr-d5f8b87088495c0ffb763c54b1fd2986.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://scenes/hangar/lightmap_data/hangar_lightmap_gi_data.exr"
+dest_files=["res://.godot/imported/hangar_lightmap_gi_data.exr-d5f8b87088495c0ffb763c54b1fd2986.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=4
